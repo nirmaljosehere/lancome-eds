@@ -1,0 +1,75 @@
+{
+  "definitions": [
+    {
+      "title": "Product List",
+      "id": "product-list",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Product List",
+              "filter": "product-list"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Product",
+      "id": "product",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Product",
+              "model": "product"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "product",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "name": "content",
+          "value": "",
+          "label": "Name & Subtitle",
+          "valueType": "string",
+          "description": "First line: product name. Second line: subtitle/category."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "price",
+          "label": "Price"
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Product Link"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "product-list",
+      "components": [
+        "product"
+      ]
+    }
+  ]
+}

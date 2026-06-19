@@ -5,43 +5,38 @@ export default function decorate(block) {
 
   rows.forEach((row) => {
     const cells = [...row.children];
-    const [imageCell, nameCell, subtitleCell, priceCell, linkCell, badgeCell] = cells;
+    const [imageCell, contentCell, priceCell, linkCell] = cells;
 
     const card = document.createElement('div');
     card.className = 'product-card';
 
-    if (badgeCell?.textContent.trim()) {
-      const badge = document.createElement('span');
-      badge.className = 'product-card__badge';
-      badge.textContent = badgeCell.textContent.trim();
-      card.append(badge);
-    }
-
     const imageWrap = document.createElement('div');
-    imageWrap.className = 'product-card__image-wrap';
+    imageWrap.className = 'product-card-image-wrap';
     if (imageCell) imageWrap.append(...imageCell.childNodes);
     card.append(imageWrap);
 
     const body = document.createElement('div');
-    body.className = 'product-card__body';
+    body.className = 'product-card-body';
 
-    if (subtitleCell?.textContent.trim()) {
-      const subtitle = document.createElement('p');
-      subtitle.className = 'product-card__subtitle';
-      subtitle.textContent = subtitleCell.textContent.trim();
-      body.append(subtitle);
-    }
-
-    if (nameCell?.textContent.trim()) {
-      const name = document.createElement('p');
-      name.className = 'product-card__name';
-      name.textContent = nameCell.textContent.trim();
-      body.append(name);
+    if (contentCell) {
+      const paras = [...contentCell.querySelectorAll('p')];
+      if (paras[1]) {
+        const subtitle = document.createElement('p');
+        subtitle.className = 'product-card-subtitle';
+        subtitle.textContent = paras[1].textContent.trim();
+        body.append(subtitle);
+      }
+      if (paras[0]) {
+        const name = document.createElement('p');
+        name.className = 'product-card-name';
+        name.textContent = paras[0].textContent.trim();
+        body.append(name);
+      }
     }
 
     if (priceCell?.textContent.trim()) {
       const price = document.createElement('p');
-      price.className = 'product-card__price';
+      price.className = 'product-card-price';
       price.textContent = priceCell.textContent.trim();
       body.append(price);
     }
@@ -49,8 +44,8 @@ export default function decorate(block) {
     if (linkCell) {
       const anchor = linkCell.querySelector('a');
       if (anchor) {
-        anchor.className = 'product-card__cta';
-        anchor.textContent = anchor.textContent || 'Shop Now';
+        anchor.className = 'product-card-cta';
+        if (!anchor.textContent.trim()) anchor.textContent = 'Shop Now';
         body.append(anchor);
       }
     }

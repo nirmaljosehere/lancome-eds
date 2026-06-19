@@ -214,5 +214,36 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "product",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "content",
+        "value": "",
+        "label": "Name & Subtitle",
+        "valueType": "string",
+        "description": "First line: product name. Second line: subtitle/category."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "price",
+        "label": "Price"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Product Link"
+      }
+    ]
   }
 ]
