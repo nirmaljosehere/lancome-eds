@@ -221,6 +221,10 @@
           {
             "name": "Split (image left, text right)",
             "value": "split"
+          },
+          {
+            "name": "Below (full-width image, text below)",
+            "value": "below"
           }
         ]
       }
